@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family | Luxury Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Family</h1>
+    <p class="subtitle">The People Who Shape the Journey</p>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="btn-back">Back to Home</a>
+
+    <section>
+      <h2>Family Members</h2>
+      <div id="family-list" class="family-list">
+        <!-- Populated by JavaScript -->
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Add Family Member</h2>
+      <p>Manually add a new family member to the interactive list below.</p>
+      <form id="add-member-form">
+        <div class="form-group">
+          <label for="member-name">Name</label>
+          <input type="text" id="member-name" name="name" required placeholder="Enter full name" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="member-role">Role / Relation</label>
+          <input type="text" id="member-role" name="role" required placeholder="e.g. Parent, Sibling, Grandparent" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="member-dob">Date of Birth (optional)</label>
+          <input type="date" id="member-dob" name="dob">
+        </div>
+        <button type="submit" class="btn-add">Add Member</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="gold-line"></div>
+    <p>Crafted with care · Luxury Black &amp; Gold</p>
+  </footer>
+
+  <script>
+    // Initial family data
+    const familyMembers = [
+      { name: "Garren", dob: "1973-03-01", role: "Family Member" },
+      { name: "Toni", dob: "1975-05-09", role: "Family Member" },
+      { name: "Ethan", dob: "2007-04-24", role: "Family Member" },
+      { name: "Logan", dob: "2010-07-07", role: "Family Member" },
+      { name: "Rosalyn", dob: "1958-05-08", role: "Family Member" },
+      { name: "Stephen", dob: "1961-03-16", role: "Family Member" },
+      { name: "Eira", dob: "1945-01-23", role: "Family Member" },
+      { name: "Tony", dob: null, role: "Family Member" }
+    ];
+
+    function calculateAge(dobString) {
+      if (!dobString) return "Unknown";
+      const dob = new Date(dobString);
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      return age + " years";
+    }
+
+    function formatDate(dobString) {
+      if (!dobString) return "DOB Unknown";
+      const dob = new Date(dobString);
+      const options = { day: '2-digit', month: 'long', year: 'numeric' };
+      return dob.toLocaleDateString('en-GB', options);
+    }
+
+    function renderFamilyList() {
+      const list = document.getElementById('family-list');
+      list.innerHTML = '';
+
+      familyMembers.forEach((member, index) => {
+        const card = document.createElement('div');
+        card.className = 'family-member';
+        card.innerHTML = `
+          <span class="name">${member.name}</span>
+          <span class="dob">${formatDate(member.dob)}</span>
+          <span class="age">Age: ${calculateAge(member.dob)}</span>
+          <span class="role">${member.role}</span>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    // Form submission
+    document.getElementById('add-member-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('member-name').value.trim();
+      const role = document.getElementById('member-role').value.trim();
+      const dobInput = document.getElementById('member-dob').value;
+
+      if (!name || !role) return;
+
+      familyMembers.push({
+        name: name,
+        dob: dobInput || null,
+        role: role
+      });
+
+      renderFamilyList();
+
+      // Reset form
+      this.reset();
+    });
+
+    // Initial render
+    renderFamilyList();
+  </script>
+</body>
+</html>
