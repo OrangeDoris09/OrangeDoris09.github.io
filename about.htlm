@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Luxury Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>About</h1>
+    <p class="subtitle">The Story Behind the Name</p>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="btn-back">Back to Home</a>
+
+    <section class="content-section">
+      <div class="card">
+        <h2>Welcome</h2>
+        <p>
+          This personal archive serves as a refined digital space to document key chapters of life —
+          education, family bonds, cherished companions, and the timeline of meaningful moments.
+        </p>
+        <p>
+          Designed with a luxury black and gold aesthetic, the site prioritises clarity, elegance,
+          and ease of navigation. Each section is modular and intended to grow as more details are added.
+        </p>
+        <p>
+          Placeholder content is used throughout. Replace text and images with personal information
+          as desired. All styling is controlled via the external stylesheet for consistency.
+        </p>
+      </div>
+
+      <div class="card mt-2">
+        <h2>Design Philosophy</h2>
+        <p>
+          Deep charcoal blacks paired with refined gold accents create a timeless, premium feel.
+          Subtle hover interactions, custom scrollbars, and carefully spaced typography contribute
+          to a polished user experience across devices.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="gold-line"></div>
+    <p>Crafted with care · Luxury Black &amp; Gold</p>
+  </footer>
+</body>
+</html>
